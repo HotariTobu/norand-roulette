@@ -5,7 +5,7 @@ const deltaTime = 50
 
 export const Accelerator = (props: {
   attenuation: number
-  increment: number
+  acceleration: number
   children: ReactNode
 }) => {
   const ref = useRef({
@@ -31,7 +31,7 @@ export const Accelerator = (props: {
   }, [props.attenuation])
 
   const boost = () => {
-    ref.current.speed += props.increment
+    ref.current.speed += props.acceleration
   }
 
   const style: CSSProperties = {

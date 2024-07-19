@@ -1,0 +1,11 @@
+{
+  "title": "ノーランド・ルーレット",
+  "candidacy": {
+    "header": "候補"
+  },
+  "options": {
+    "header": "オプション",
+    "acceleration": "加速",
+    "attenuation": "減衰"
+  }
+}

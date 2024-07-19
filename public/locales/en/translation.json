@@ -1,0 +1,11 @@
+{
+  "title": "Norand Roulette",
+  "candidacy": {
+    "header": "Candidacy"
+  },
+  "options": {
+    "header": "Options",
+    "acceleration": "Acceleration",
+    "attenuation": "Attenuation"
+  }
+}
