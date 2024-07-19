@@ -60,7 +60,7 @@ export const Wheel = (props: {
   const arcY = Math.sin(arcAngle)
 
   return (
-    <svg viewBox="-1 -1 2 2">
+    <svg viewBox="-1.1 -1.1 2.2 2.2">
       {labelsWithId.map(({ label, index, id }) => (
         <text visibility="hidden" ref={e => setRef(e, index)} key={id}>{label}</text>
       ))}
