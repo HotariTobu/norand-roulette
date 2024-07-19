@@ -6,6 +6,8 @@ import { Wheel } from "./components/Wheel"
 import { useEffect } from "react"
 import { useTranslation } from "react-i18next"
 
+const defaultLabelText = [1, 2, 3].join('\n')
+
 function App() {
   const { t } = useTranslation()
 
@@ -21,7 +23,7 @@ function App() {
   })
 
   const [labelText, setLabelText] = useLocalStorageState('labelText', {
-    defaultValue: ''
+    defaultValue: defaultLabelText
   })
 
   const labels = labelText
