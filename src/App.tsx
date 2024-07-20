@@ -37,10 +37,19 @@ function App() {
         <div className="text-lg md:text-xl">{t('candidacy.header')}</div>
         <Textarea className="md:text-lg" rows={8} value={labelText} onChange={e => setLabelText(e.target.value)} />
       </div>
-      <div className="w-9/12 m-auto overflow-clip md:row-span-2">
+      <div className="w-9/12 m-auto select-none overflow-clip md:row-span-2 relative">
         <Accelerator acceleration={acceleration} attenuation={attenuation} >
           <Wheel labels={labels} />
         </Accelerator>
+        <div className="absolute inset-0 pointer-events-none">
+          <svg viewBox="-6 -6 12 12">
+            <g transform="rotate(-45)">
+              <g transform="translate(5.3, 0)">
+                <polygon points="0, 0 3, -1 3, 1" transform="scale(0.3)" strokeWidth="0.1" stroke="black" fill="white" />
+              </g>
+            </g>
+          </svg>
+        </div>
       </div>
       <div className="m-2 space-y-4">
         <div className="text-lg md:text-xl">{t('options.header')}</div>
