@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import Backend from 'i18next-http-backend';
+import Backend, { HttpBackendOptions } from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 // don't want to use this?
 // have a look at the Quick start guide
@@ -25,7 +25,11 @@ i18n
 
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
-    }
+    },
+
+    backend: {
+      loadPath: `${import.meta.env.BASE_URL}locales/{{lng}}/{{ns}}.json`,
+    } satisfies HttpBackendOptions
   });
 
 
