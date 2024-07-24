@@ -8,7 +8,7 @@ export const Wheel = (props: {
 
   const ref = useRef([] as SVGTextElement[])
   const [x, setX] = useState(0)
-  const [fontSize, setFontSize] = useState(0)
+  const [height, setHeight] = useState(0)
 
   useLayoutEffect(() => {
     if (labelCount === 0) {
@@ -27,13 +27,13 @@ export const Wheel = (props: {
       height: 0,
     })
 
-    const labelProps = getLabelProps(labelCount, max.width, max.height)
-    if (isNaN(labelProps.x) || isNaN(labelProps.fontSize)) {
+    const labelBoxRect = getLabelBoxRect(labelCount, max.width, max.height)
+    if (isNaN(labelBoxRect.x) || isNaN(labelBoxRect.height)) {
       return
     }
 
-    setX(labelProps.x)
-    setFontSize(labelProps.fontSize)
+    setX(labelBoxRect.x)
+    setHeight(labelBoxRect.height)
   }, [labelCount, props.labels.join(',')])
 
   if (labelCount < 2) {
@@ -70,7 +70,7 @@ export const Wheel = (props: {
           <path stroke="black" strokeWidth="0.001" d={`M0 0 L${arcX} ${arcY} A1 1 0 0 0 ${arcX} ${-arcY} Z`} fill={
             hsl(index * centralAngle, 100, 80).hex()
           } />
-          <text textAnchor="end" alignmentBaseline="central" fill="black" x={x} fontSize={fontSize * 0.7}>{label}</text>
+          <text textAnchor="end" alignmentBaseline="central" fill="black" x={x} fontSize={height * 0.7}>{label}</text>
         </g>
       ))}
 
@@ -79,16 +79,14 @@ export const Wheel = (props: {
   )
 }
 
-const getLabelProps = (count: number, width: number, height: number) => {
+const getLabelBoxRect = (count: number, width: number, height: number) => {
   const { PI, sqrt, sin, cos } = Math
   const theta = 2 * PI / count
   const aspectRatio = width / height
   const radiusRatio = 1 / sqrt(2 * aspectRatio ** 2 * (1 - cos(theta)) + 2 * aspectRatio * sin(theta) + 1)
 
-  const x = sqrt(1 - (radiusRatio * sin(theta / 2)) ** 2)
-  const fontSize = 2 * radiusRatio * sin(theta / 2)
   return {
-    x,
-    fontSize,
+    x: sqrt(1 - (radiusRatio * sin(theta / 2)) ** 2),
+    height: 2 * radiusRatio * sin(theta / 2),
   }
 }
