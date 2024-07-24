@@ -37,7 +37,7 @@ function App() {
         <div className="text-lg md:text-xl">{t('items.header')}</div>
         <Textarea className="md:text-lg" rows={8} value={itemText} onChange={e => setItemText(e.target.value)} />
       </div>
-      <div className="w-3/4 md:max-w-[90vh] m-auto select-none overflow-clip relative md:row-span-2">
+      <div className="w-[min(75%,_90vh)] m-auto select-none overflow-clip relative md:row-span-2">
         <Accelerator acceleration={acceleration} attenuation={attenuation} >
           <Wheel items={items} />
         </Accelerator>
