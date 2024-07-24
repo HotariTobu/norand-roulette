@@ -7,5 +7,9 @@
     "header": "Options",
     "acceleration": "Acceleration",
     "attenuation": "Attenuation"
+  },
+  "how-to-use": {
+    "header": "How To Use",
+    "body": "Norand Roulette is a roulette app that doesn't use random numbers. Enter your item choices separated by line breaks and click or tap the wheel."
   }
 }
