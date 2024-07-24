@@ -53,12 +53,10 @@ function App() {
       </div>
       <div className="m-2 space-y-2 md:space-y-4">
         <div className="text-lg md:text-xl">{t('options.header')}</div>
-        <div className="flex">
-          <div className="w-16">{t('options.acceleration')}</div>
+        <div className="gap-4 grid grid-cols-[auto_minmax(auto,_1fr)]">
+          <div>{t('options.acceleration')}</div>
           <Slider min={attenuation + 0.0001} max={0.1} step={0.0001} value={[acceleration]} onValueChange={v => setAcceleration(v[0])} />
-        </div>
-        <div className="flex">
-          <div className="w-16">{t('options.attenuation')}</div>
+          <div>{t('options.attenuation')}</div>
           <Slider min={0.0001} max={0.01} step={0.00001} value={[attenuation]} onValueChange={v => setAttenuation(v[0])} />
         </div>
       </div>
