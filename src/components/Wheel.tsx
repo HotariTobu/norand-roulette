@@ -70,7 +70,7 @@ export const Wheel = (props: {
           <path stroke="black" strokeWidth="0.001" d={`M0 0 L${arcX} ${arcY} A1 1 0 0 0 ${arcX} ${-arcY} Z`} fill={
             hsl(index * centralAngle, 100, 80).hex()
           } />
-          <text textAnchor="end" alignmentBaseline="central" fill="black" x={x} fontSize={height * 0.7}>{item}</text>
+          <text textAnchor="end" alignmentBaseline="middle" fill="black" x={x} fontSize={height * 0.7}>{item}</text>
         </g>
       ))}
 
