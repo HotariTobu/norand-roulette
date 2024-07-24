@@ -6,7 +6,7 @@ import { Wheel } from "./components/Wheel"
 import { useEffect } from "react"
 import { useTranslation } from "react-i18next"
 
-const defaultLabelText = [1, 2, 3].join('\n')
+const defaultItemText = [1, 2, 3].join('\n')
 
 function App() {
   const { t } = useTranslation()
@@ -22,24 +22,24 @@ function App() {
     defaultValue: 0.001
   })
 
-  const [labelText, setLabelText] = useLocalStorageState('labelText', {
-    defaultValue: defaultLabelText
+  const [itemText, setItemText] = useLocalStorageState('itemText', {
+    defaultValue: defaultItemText
   })
 
-  const labels = labelText
+  const items = itemText
     .split('\n')
-    .map(label => label.trim())
-    .filter(label => label.length > 0)
+    .map(item => item.trim())
+    .filter(item => item.length > 0)
 
   return (
     <div className="gap-4 h-screen grid grid-rows-[auto_minmax(auto,_1fr)_auto] md:grid-cols-[minmax(auto,_1fr)_minmax(auto,_2fr)] md:grid-rows-[auto_minmax(auto,_1fr)]">
       <div className="m-2 space-y-4">
-        <div className="text-lg md:text-xl">{t('candidacy.header')}</div>
-        <Textarea className="md:text-lg" rows={8} value={labelText} onChange={e => setLabelText(e.target.value)} />
+        <div className="text-lg md:text-xl">{t('items.header')}</div>
+        <Textarea className="md:text-lg" rows={8} value={itemText} onChange={e => setItemText(e.target.value)} />
       </div>
       <div className="w-9/12 m-auto select-none overflow-clip md:row-span-2 relative">
         <Accelerator acceleration={acceleration} attenuation={attenuation} >
-          <Wheel labels={labels} />
+          <Wheel items={items} />
         </Accelerator>
         <div className="absolute inset-0 pointer-events-none">
           <svg viewBox="-6 -6 12 12">

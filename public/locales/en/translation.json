@@ -1,7 +1,7 @@
 {
   "title": "Norand Roulette",
-  "candidacy": {
-    "header": "Candidacy"
+  "items": {
+    "header": "Items"
   },
   "options": {
     "header": "Options",

@@ -2,16 +2,16 @@ import { useLayoutEffect, useRef, useState } from "react"
 import { hsl } from 'color'
 
 export const Wheel = (props: {
-  labels: string[]
+  items: string[]
 }) => {
-  const labelCount = props.labels.length
+  const itemCount = props.items.length
 
   const ref = useRef([] as SVGTextElement[])
   const [x, setX] = useState(0)
   const [height, setHeight] = useState(0)
 
   useLayoutEffect(() => {
-    if (labelCount === 0) {
+    if (itemCount === 0) {
       return
     }
 
@@ -27,16 +27,16 @@ export const Wheel = (props: {
       height: 0,
     })
 
-    const labelBoxRect = getLabelBoxRect(labelCount, max.width, max.height)
-    if (isNaN(labelBoxRect.x) || isNaN(labelBoxRect.height)) {
+    const itemBoxRect = getItemBoxRect(itemCount, max.width, max.height)
+    if (isNaN(itemBoxRect.x) || isNaN(itemBoxRect.height)) {
       return
     }
 
-    setX(labelBoxRect.x)
-    setHeight(labelBoxRect.height)
-  }, [labelCount, props.labels.join(',')])
+    setX(itemBoxRect.x)
+    setHeight(itemBoxRect.height)
+  }, [itemCount, props.items.join(',')])
 
-  if (labelCount < 2) {
+  if (itemCount < 2) {
     return
   }
 
@@ -49,28 +49,28 @@ export const Wheel = (props: {
     }
   }
 
-  const labelsWithId = props.labels.map((label, index) => ({
-    label,
+  const itemsWithId = props.items.map((item, index) => ({
+    item,
     index,
-    id: `${label}-${index}`,
+    id: `${item}-${index}`,
   }))
-  const centralAngle = 360 / labelCount
-  const arcAngle = Math.PI / labelCount
+  const centralAngle = 360 / itemCount
+  const arcAngle = Math.PI / itemCount
   const arcX = Math.cos(arcAngle)
   const arcY = Math.sin(arcAngle)
 
   return (
     <svg viewBox="-1.1 -1.1 2.2 2.2">
-      {labelsWithId.map(({ label, index, id }) => (
-        <text visibility="hidden" ref={e => setRef(e, index)} key={id}>{label}</text>
+      {itemsWithId.map(({ item, index, id }) => (
+        <text visibility="hidden" ref={e => setRef(e, index)} key={id}>{item}</text>
       ))}
 
-      {labelsWithId.map(({ label, index, id }) => (
+      {itemsWithId.map(({ item, index, id }) => (
         <g transform={`rotate(${index * centralAngle})`} key={id}>
           <path stroke="black" strokeWidth="0.001" d={`M0 0 L${arcX} ${arcY} A1 1 0 0 0 ${arcX} ${-arcY} Z`} fill={
             hsl(index * centralAngle, 100, 80).hex()
           } />
-          <text textAnchor="end" alignmentBaseline="central" fill="black" x={x} fontSize={height * 0.7}>{label}</text>
+          <text textAnchor="end" alignmentBaseline="central" fill="black" x={x} fontSize={height * 0.7}>{item}</text>
         </g>
       ))}
 
@@ -79,7 +79,7 @@ export const Wheel = (props: {
   )
 }
 
-const getLabelBoxRect = (count: number, width: number, height: number) => {
+const getItemBoxRect = (count: number, width: number, height: number) => {
   const { PI, sqrt, sin, cos } = Math
   const theta = 2 * PI / count
   const aspectRatio = width / height
