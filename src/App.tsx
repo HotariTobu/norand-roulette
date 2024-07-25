@@ -32,12 +32,12 @@ function App() {
     .filter(item => item.length > 0)
 
   return (
-    <div className="gap-4 min-h-screen grid grid-rows-[auto_minmax(auto,_1fr)_auto_auto] md:grid-cols-[minmax(auto,_1fr)_minmax(auto,_2fr)] md:grid-rows-[auto_minmax(auto,_1fr)_auto]">
+    <div className="gap-4 min-h-svh grid grid-rows-[auto_minmax(auto,_1fr)_auto_auto] md:grid-cols-[minmax(auto,_1fr)_minmax(auto,_2fr)] md:grid-rows-[auto_minmax(auto,_1fr)_auto]">
       <div className="m-2 space-y-2 md:space-y-4">
         <div className="text-lg md:text-xl">{t('items.header')}</div>
         <Textarea className="md:text-lg" rows={8} value={itemText} onChange={e => setItemText(e.target.value)} />
       </div>
-      <div className="w-[min(75%,_90vh)] m-auto select-none overflow-clip relative md:row-span-2">
+      <div className="w-[min(75%,_75svh)] m-auto select-none overflow-clip relative md:row-span-2">
         <Accelerator acceleration={acceleration} attenuation={attenuation} >
           <Wheel items={items} />
         </Accelerator>
